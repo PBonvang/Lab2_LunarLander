@@ -25,7 +25,7 @@ exit_program = False
 scores = []
 
 while not exit_program:
-    env.render()
+    #env.render()
     (x, y, xspeed, yspeed), reward, done = env.step((boost, left, right)) 
 
     # Process game events
@@ -99,7 +99,7 @@ while not exit_program:
     if done:
         scores.append(reward)
         
-        if len(scores) == 1537:
+        if len(scores) == 266256:
             print("_______________Scores_____________________")
             average = sum(scores)/len(scores)
             std = calculate_std(scores, average)

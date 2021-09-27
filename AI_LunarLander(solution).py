@@ -25,7 +25,7 @@ exit_program = False
 scores = []
 
 while not exit_program:
-    #env.render()
+    env.render()
     (x, y, xspeed, yspeed), reward, done = env.step((boost, left, right)) 
 
     # Process game events
@@ -86,20 +86,20 @@ while not exit_program:
     if abs(x)<15 and abs(xspeed)<=1:
         left = right = False
     
-    # Optimal control
-    # boost =  y - yspeed**2/30 < 0
-    # left, right = x < 0, x > 0
-    # if xspeed < 0 and x - xspeed**2/40 < 0:
-    #     left, right = True, False
-    # if xspeed > 0 and x + xspeed**2/40 > 0:
-    #     left, right = False, True
-    # if abs(x)<10 and abs(xspeed)<2:
-    #     left, right = False, False
+#    # Optimal control
+    boost =  y - yspeed**2/30 < 0
+    left, right = x < 0, x > 0
+    if xspeed < 0 and x - xspeed**2/40 < 0:
+        left, right = True, False
+    if xspeed > 0 and x + xspeed**2/40 > 0:
+        left, right = False, True
+    if abs(x)<10 and abs(xspeed)<2:
+        left, right = False, False
 
     if done:
         scores.append(reward)
         
-        if len(scores) == 266256:
+        if len(scores) == 10:
             print("_______________Scores_____________________")
             average = sum(scores)/len(scores)
             std = calculate_std(scores, average)
